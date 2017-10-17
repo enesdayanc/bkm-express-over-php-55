@@ -75,11 +75,12 @@ class MerchantService
      * @param $amount
      * @param $installmentUrl
      * @param $nonceUrl
+     * @param $orderId
      * @return TicketResponse
      */
-    public function oneTimeTicketWithNonce(Token $connection, $amount, $installmentUrl, $nonceUrl)
+    public function oneTimeTicketWithNonce(Token $connection, $amount, $installmentUrl, $nonceUrl, $orderId)
     {
-        $requestBody = Builder::newPayment("payment")->amountAndInstallmentUrlAndNonceUrl($amount, $installmentUrl, $nonceUrl);
+        $requestBody = Builder::newPayment("payment")->orderId($orderId)->amountAndInstallmentUrlAndNonceUrl($amount, $installmentUrl, $nonceUrl);
         return $this->createOneTimeTicket($requestBody, $connection);
     }
 
